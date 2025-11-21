@@ -1,3 +1,4 @@
+
 export interface Project {
   id: string;
   title: string;
@@ -7,6 +8,15 @@ export interface Project {
   imageUrl: string;
   tags: string[];
   link: string;
+  gallery?: string[];
+}
+
+export interface Experience {
+  id: string;
+  role: string;
+  company: string;
+  period: string;
+  description: string[];
 }
 
 export interface Testimonial {
@@ -14,15 +24,15 @@ export interface Testimonial {
   name: string;
   role: string;
   company: string;
-  content: string;
   avatarUrl: string;
+  content: string;
 }
 
 export enum Routes {
   HOME = '/',
   WORKS = '/works',
   ABOUT = '/about',
-  TESTIMONIALS = '/testimonials',
+  EXPERIENCE = '/experience',
   CONTACT = '/contact',
   PROJECT = '/works/:id'
 }

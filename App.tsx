@@ -2,12 +2,13 @@ import React, { useEffect } from 'react';
 import { HashRouter as Router, Routes as ReactRoutes, Route, useLocation } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import { BackButton } from './components/BackButton';
 import { Home } from './pages/Home';
 import { Works } from './pages/Works';
 import { ProjectDetail } from './pages/ProjectDetail';
 import { About } from './pages/About';
 import { Contact } from './pages/Contact';
-import { Testimonials } from './pages/Testimonials';
+import { Experience } from './pages/Experience';
 import { Routes as RoutePaths } from './types';
 
 const ScrollToTop = () => {
@@ -31,10 +32,11 @@ const App: React.FC = () => {
             <Route path={RoutePaths.PROJECT} element={<ProjectDetail />} />
             <Route path={RoutePaths.ABOUT} element={<About />} />
             <Route path={RoutePaths.CONTACT} element={<Contact />} />
-            <Route path={RoutePaths.TESTIMONIALS} element={<Testimonials />} />
+            <Route path={RoutePaths.EXPERIENCE} element={<Experience />} />
           </ReactRoutes>
         </div>
         <Footer />
+        <BackButton />
       </div>
     </Router>
   );

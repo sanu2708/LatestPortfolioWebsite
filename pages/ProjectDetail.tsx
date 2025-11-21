@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { PROJECTS } from '../constants';
@@ -45,7 +46,7 @@ export const ProjectDetail: React.FC = () => {
              </div>
              <div className="border-t-2 border-gray-200 pt-4">
                <h3 className="font-oswald text-xl uppercase mb-2">Role</h3>
-               <p className="font-mono text-muted">Frontend Development, UI/UX</p>
+               <p className="font-mono text-muted">Backend Development, API Design</p>
              </div>
              <div className="border-t-2 border-gray-200 pt-4">
                <h3 className="font-oswald text-xl uppercase mb-2">Stack</h3>
@@ -55,7 +56,9 @@ export const ProjectDetail: React.FC = () => {
                  ))}
                </div>
              </div>
-             <Button className="w-full mt-8">Visit Live Site →</Button>
+             <a href={project.link} target="_blank" rel="noopener noreferrer" className="block w-full mt-8">
+                <Button className="w-full">Visit Live/Source →</Button>
+             </a>
           </div>
 
           {/* Main Content */}
@@ -63,19 +66,22 @@ export const ProjectDetail: React.FC = () => {
              <h2 className="font-oswald text-3xl uppercase text-primary mb-6">Project Overview</h2>
              <p className="font-mono text-muted leading-loose mb-12 text-lg">
                {project.description}
-               <br/><br/>
-               This project challenged traditional navigation patterns. The goal was to create an immersive environment that felt less like a website and more like an interactive editorial piece. We utilized WebGL for smooth transitions and React for state management to ensure a snappy experience across devices.
              </p>
 
              {/* Gallery Grid */}
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gray-200 aspect-square rounded-sm overflow-hidden">
-                   <img src={`https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80`} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="Detail 1" />
-                </div>
-                <div className="bg-gray-200 aspect-square rounded-sm overflow-hidden">
-                   <img src={`https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=800&q=80`} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" alt="Detail 2" />
-                </div>
-             </div>
+             {project.gallery && project.gallery.length > 0 && (
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {project.gallery.map((imgUrl, index) => (
+                     <div key={index} className="bg-gray-200 aspect-square rounded-sm overflow-hidden">
+                        <img 
+                          src={imgUrl} 
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
+                          alt={`${project.title} detail ${index + 1}`} 
+                        />
+                     </div>
+                  ))}
+               </div>
+             )}
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ContactForm } from '../components/ContactForm';
 
@@ -16,15 +17,20 @@ export const Contact: React.FC = () => {
               
               <div className="space-y-8">
                  <div>
+                   <h4 className="font-oswald uppercase text-xl mb-2">Phone</h4>
+                   <a href="tel:+916388782415" className="font-mono text-dark hover:text-primary text-lg block">+91 63887 82415</a>
+                 </div>
+                 <div>
                    <h4 className="font-oswald uppercase text-xl mb-2">Email</h4>
-                   <a href="mailto:info@sanusingh.com" className="font-mono text-dark hover:text-primary text-lg">info@sanusingh.com</a>
+                   <a href="mailto:sanu27081@gmail.com" className="font-mono text-dark hover:text-primary text-lg block">sanu27081@gmail.com</a>
                  </div>
                  <div>
                    <h4 className="font-oswald uppercase text-xl mb-2">Socials</h4>
                    <div className="flex gap-4 font-mono text-sm">
-                      <a href="#" className="hover:text-primary">LinkedIn</a>
-                      <a href="#" className="hover:text-primary">Twitter</a>
-                      <a href="#" className="hover:text-primary">Instagram</a>
+                      <a href="https://github.com/sanu2708" target="_blank" rel="noopener noreferrer" className="hover:text-primary">GitHub</a>
+                      <a href="https://www.linkedin.com/in/sanu27081/" target="_blank" rel="noopener noreferrer" className="hover:text-primary">LinkedIn</a>
+                      <a href="https://x.com/sanu27081" target="_blank" rel="noopener noreferrer" className="hover:text-primary">X (Twitter)</a>
+                      <a href="https://www.instagram.com/mauktiksingh" target="_blank" rel="noopener noreferrer" className="hover:text-primary">Instagram</a>
                    </div>
                  </div>
               </div>

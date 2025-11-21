@@ -1,9 +1,17 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Routes } from '../types';
 import { WaveOverlay } from './WaveOverlay';
 
 export const Footer: React.FC = () => {
+  const socialLinks = [
+    { name: 'Instagram', url: 'https://www.instagram.com/mauktiksingh' },
+    { name: 'X (Twitter)', url: 'https://x.com/sanu27081' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/sanu27081/' },
+    { name: 'GitHub', url: 'https://github.com/sanu2708' }
+  ];
+
   return (
     <footer className="bg-beige relative pt-32 pb-12 overflow-hidden">
       {/* Top Decoration */}
@@ -15,10 +23,10 @@ export const Footer: React.FC = () => {
           <div className="flex flex-col justify-center">
             <h3 className="font-mono text-xs text-muted uppercase tracking-widest mb-4">Get in touch</h3>
             <a 
-              href="mailto:info@sanusingh.com" 
+              href="mailto:sanu27081@gmail.com" 
               className="font-oswald text-4xl md:text-5xl lg:text-6xl text-primary font-bold uppercase leading-none hover:text-dark transition-colors break-all"
             >
-              info@<br/>sanusingh.com
+              sanu27081@<br/>gmail.com
             </a>
           </div>
 
@@ -28,21 +36,20 @@ export const Footer: React.FC = () => {
              <nav className="flex flex-col gap-3 text-center items-start md:items-center">
                 <Link to={Routes.WORKS} className="font-oswald text-xl uppercase hover:text-primary transition-colors">Selected Works</Link>
                 <Link to={Routes.ABOUT} className="font-oswald text-xl uppercase hover:text-primary transition-colors">About Me</Link>
-                <Link to={Routes.TESTIMONIALS} className="font-oswald text-xl uppercase hover:text-primary transition-colors">Testimonials</Link>
+                <Link to={Routes.EXPERIENCE} className="font-oswald text-xl uppercase hover:text-primary transition-colors">Experience</Link>
              </nav>
           </div>
 
           {/* Right: Address & Social */}
           <div className="flex flex-col md:items-end justify-center text-left md:text-right">
-            <h3 className="font-mono text-xs text-muted uppercase tracking-widest mb-6">Studio</h3>
+            <h3 className="font-mono text-xs text-muted uppercase tracking-widest mb-6">Location</h3>
             <p className="font-mono text-sm text-dark mb-8 leading-relaxed">
-              123 Creative Ave, Floor 4<br/>
-              San Francisco, CA 94110<br/>
-              United States
+              Lucknow, India<br/>
+              Available Remote
             </p>
             <div className="flex gap-4">
-              {['Facebook', 'Instagram', 'Twitter', 'LinkedIn'].map(s => (
-                <a key={s} href="#" className="font-mono text-xs uppercase hover:text-primary border-b border-transparent hover:border-primary transition-all">{s}</a>
+              {socialLinks.map(s => (
+                <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="font-mono text-xs uppercase hover:text-primary border-b border-transparent hover:border-primary transition-all">{s.name}</a>
               ))}
             </div>
           </div>

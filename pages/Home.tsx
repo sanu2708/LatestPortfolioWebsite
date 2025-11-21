@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PROJECTS, HERO_IMAGE, TESTIMONIALS } from '../constants';
+import { PROJECTS, HERO_IMAGE, EXPERIENCES } from '../constants';
 import { Routes } from '../types';
 import { ProjectCard } from '../components/ProjectCard';
 import { Button } from '../components/ui/Button';
@@ -15,7 +16,7 @@ export const Home: React.FC = () => {
   return (
     <main className="overflow-x-hidden">
       {/* HERO SECTION */}
-      <section className="relative min-h-[90vh] flex flex-col justify-center pt-20 pb-12 overflow-hidden bg-offwhite">
+      <section className="relative min-h-screen flex flex-col justify-center pt-32 pb-20 overflow-hidden bg-offwhite">
         
         {/* Background Wavy Decoration */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -36,64 +37,68 @@ export const Home: React.FC = () => {
         <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center h-full">
           
              {/* Subheading */}
-             <h2 className="font-oswald text-xl md:text-2xl font-bold uppercase tracking-widest text-dark mb-8 lg:mb-12 text-center relative z-30">
-              Hi There, I'm Sanu Singh
+             <h2 className="font-oswald text-xl md:text-2xl font-bold uppercase tracking-widest text-dark mb-4 md:mb-8 text-center relative z-30">
+              Hi! I'M Sanu Singh
             </h2>
 
-            {/* Grid Composition for Perfect Overlap & Responsiveness */}
-            <div className="grid grid-cols-1 grid-rows-1 place-items-center w-full max-w-7xl mx-auto">
+            {/* COMPOSITION CONTAINER */}
+            <div className="relative w-full max-w-7xl mx-auto flex flex-col items-center">
                 
-                {/* Layer 1: Typography (Z-30 = ON TOP of image) */}
-                <div className="col-start-1 row-start-1 flex flex-col items-center justify-center w-full z-30 select-none pointer-events-none">
-                    {/* Gap frames the image */}
-                    <div className="flex justify-between w-full gap-16 md:gap-48 lg:gap-64 transition-all duration-500 transform -translate-y-6 md:-translate-y-16">
-                         <span className="text-[16vw] md:text-[13rem] lg:text-[15rem] font-oswald font-bold text-primary uppercase leading-[0.8] tracking-tighter opacity-90 drop-shadow-xl md:drop-shadow-none mix-blend-darken">FRONT</span>
-                         <span className="text-[16vw] md:text-[13rem] lg:text-[15rem] font-oswald font-bold text-primary uppercase leading-[0.8] tracking-tighter opacity-90 drop-shadow-xl md:drop-shadow-none mix-blend-darken">END</span>
-                    </div>
-                    <span className="text-[16vw] md:text-[13rem] lg:text-[15rem] font-oswald font-bold text-primary uppercase leading-[0.8] tracking-tighter opacity-90 text-center w-full drop-shadow-xl md:drop-shadow-none transform translate-y-6 md:translate-y-16 mix-blend-darken">
+                {/* LAYER 1: BACK TEXT (FULL STACK) */}
+                <div className="w-full flex justify-between items-start absolute top-20 md:top-12 left-0 right-0 z-0 px-2 md:px-8 select-none pointer-events-none">
+  <span className="text-[15vw] md:text-[13rem] lg:text-[16rem] font-oswald font-bold text-primary leading-none tracking-tighter opacity-90">
+    FULL
+  </span>
+  <span className="text-[15vw] md:text-[13rem] lg:text-[16rem] font-oswald font-bold text-primary leading-none tracking-tighter opacity-90">
+    STACK
+  </span>
+</div>
+
+                {/* LAYER 2: IMAGE (CENTER) */}
+                <div className="relative z-10 mt-[10vw] md:mt-[4rem] lg:mt-[6rem]">
+  <div className="relative w-[85vw] md:w-[34rem] lg:w-[38rem] aspect-[3/4] -translate-y-12 md:-translate-y-20 lg:-translate-y-24">
+    <img 
+      src={HERO_IMAGE} 
+      alt="Sanu Singh Portrait"
+      onError={(e) => {
+        const target = e.target as HTMLImageElement;
+        target.src = fallbackImage;
+        target.alt = "Fallback Portrait";
+      }}
+      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+    />
+    {/* Gloss overlay */}
+    <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
+  </div>
+</div>
+
+                {/* LAYER 3: FRONT TEXT (DEVELOPER) */}
+                <div className="relative z-20 -mt-[10vw] md:-mt-[5rem] lg:-mt-[6rem] flex items-center justify-center w-full">
+                    <h1 className="text-[15vw] md:text-[13rem] lg:text-[16rem] font-oswald font-bold text-primary leading-none tracking-tighter drop-shadow-xl mix-blend-normal">
                         DEVELOPER
-                    </span>
-                </div>
-
-                {/* Layer 2: Portrait Image (Z-20 = BEHIND text) */}
-                <div className="col-start-1 row-start-1 z-20 mt-4 md:mt-0">
-                    <div className="relative w-[60vw] md:w-80 lg:w-96 aspect-[3/4] shadow-2xl rounded-[3rem] bg-offwhite overflow-hidden group transition-all duration-500 border-4 border-white/50">
-                        <img 
-                            src={HERO_IMAGE} 
-                            alt="Sanu Singh Portrait"
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement;
-                              target.src = fallbackImage;
-                              target.alt = "Fallback Portrait";
-                            }}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                        />
-                         {/* Gloss overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
-                        
-                        {/* Decorative Icon */}
-                        <div className="absolute -bottom-6 -right-6 text-primary bg-white p-3 rounded-full shadow-lg hidden md:block transform rotate-12 z-40">
-                           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                             <polyline points="16 18 22 12 16 6"></polyline>
-                             <polyline points="8 6 2 12 8 18"></polyline>
-                           </svg>
-                        </div>
+                    </h1>
+                    {/* Decorative Icon */}
+                    <div className="hidden md:block absolute -right-12 top-1/2 -translate-y-1/2 text-primary transform rotate-12 bg-white/80 p-2 rounded-full shadow-lg">
+                       <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                         <polyline points="16 18 22 12 16 6"></polyline>
+                         <polyline points="8 6 2 12 8 18"></polyline>
+                       </svg>
                     </div>
                 </div>
 
-            </div>
+                {/* SIDE INTRO TEXT */}
+                <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/3 max-w-[260px] text-right z-30">
+                     <p className="font-mono text-xs leading-relaxed text-dark bg-white/80 backdrop-blur-md p-6 rounded shadow-sm border border-white/50">
+                       I'm a software developer. I have practised data structures and algorithms in JAVA and solved decent problem-solving skills. After that, I started learning WEB development.
+                     </p>
+                </div>
 
-            {/* Intro Text - Floating Right on Desktop */}
-            <div className="hidden lg:block absolute right-4 top-1/2 transform -translate-y-1/2 max-w-[200px] text-right z-30">
-                 <p className="font-mono text-xs leading-relaxed uppercase tracking-widest text-dark bg-white/50 backdrop-blur-sm p-4 rounded-sm shadow-sm border border-white/50">
-                   I am a creative front-end developer with a strong focus on motion and interaction.
-                 </p>
             </div>
 
            {/* Mobile Intro Text */}
            <div className="md:hidden mt-12 text-center max-w-xs mx-auto relative z-20">
-               <p className="font-mono text-xs leading-relaxed uppercase tracking-widest text-muted">
-                   I am a creative front-end developer with a strong focus on motion and interaction.
+               <p className="font-mono text-xs leading-relaxed text-muted bg-white/60 p-4 rounded-xl backdrop-blur-sm">
+                   I'm a software developer. I have practised data structures and algorithms in JAVA and solved decent problem-solving skills.
                </p>
             </div>
 
@@ -105,11 +110,11 @@ export const Home: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <h2 className="text-6xl md:text-8xl font-oswald font-bold text-primary uppercase leading-none">
-              Selected<br/>Works
+              Selected<br/>Projects
             </h2>
             <div className="flex flex-col items-start md:items-end gap-4">
               <p className="font-mono text-sm text-muted max-w-xs text-left md:text-right">
-                A curated selection of projects demonstrating performance, accessibility, and design.
+                Recent projects demonstrating my skills in Web Development and UI Design.
               </p>
               <Link to={Routes.WORKS}>
                 <Button variant="outline">View All Projects</Button>
@@ -121,6 +126,56 @@ export const Home: React.FC = () => {
             {featuredProjects.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT GLIMPSE SECTION */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            {/* Visual */}
+            <div className="lg:w-1/2 relative">
+               <div className="relative z-10 overflow-hidden rounded-sm shadow-xl">
+                 <img 
+                   src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=800&auto=format&fit=crop" 
+                   alt="About Me" 
+                   className="w-full aspect-[4/3] object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                 />
+               </div>
+               {/* Decorative elements */}
+               <div className="absolute -bottom-4 -left-4 w-full h-full border-2 border-primary/20 z-0 rounded-sm hidden md:block"></div>
+            </div>
+
+            {/* Content */}
+            <div className="lg:w-1/2">
+               <h4 className="font-mono text-xs text-primary uppercase tracking-widest mb-4 flex items-center gap-2">
+                 <span className="w-8 h-px bg-primary"></span>
+                 About Me
+               </h4>
+               <h2 className="text-4xl md:text-6xl font-oswald font-bold uppercase text-dark mb-6 leading-tight">
+                 Bridging Logic<br/>& Creativity
+               </h2>
+               <p className="font-mono text-muted leading-relaxed mb-8">
+                 I am a software developer with a strong foundation in Java, Data Structures, and Algorithms. 
+                 My journey has evolved from solving complex algorithmic problems to building robust full-stack web applications. 
+                 I thrive on creating clean, efficient, and scalable solutions that solve real-world problems.
+               </p>
+               
+               <div className="flex flex-wrap gap-4 mb-8">
+                  {['Java', 'Spring Boot', 'React', 'Problem Solving'].map(skill => (
+                    <span key={skill} className="font-mono text-xs uppercase bg-offwhite px-3 py-1 rounded text-dark border border-gray-100">
+                      {skill}
+                    </span>
+                  ))}
+               </div>
+
+               <Link to={Routes.ABOUT}>
+                 <Button variant="outline" className="!border-dark !text-dark hover:!bg-dark hover:!text-white">
+                   Read My Story
+                 </Button>
+               </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -142,8 +197,8 @@ export const Home: React.FC = () => {
                  </p>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <img src="https://images.unsplash.com/photo-1605106702842-01a843dd67e2?q=80&w=800" className="w-full h-32 object-cover grayscale hover:grayscale-0 transition-all" alt="Code" />
-                <img src="https://images.unsplash.com/photo-1550439062-609e15312797?q=80&w=800" className="w-full h-32 object-cover grayscale hover:grayscale-0 transition-all" alt="Design" />
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" className="w-full h-32 object-cover grayscale hover:grayscale-0 transition-all" alt="Code" />
+                <img src="https://images.unsplash.com/photo-1509395062183-67c5ad6faff9?q=80&w=800&auto=format&fit=crop" className="w-full h-32 object-cover grayscale hover:grayscale-0 transition-all" alt="Design" />
               </div>
             </div>
           </div>
@@ -151,25 +206,40 @@ export const Home: React.FC = () => {
         <WaveOverlay className="bottom-0 translate-y-10 text-offwhite rotate-180" />
       </section>
 
-      {/* TESTIMONIALS PREVIEW */}
+      {/* EXPERIENCE PREVIEW */}
       <section className="py-24 bg-offwhite">
         <div className="container mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-oswald font-bold text-primary uppercase mb-16 text-center">
-            What People Say
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-             {TESTIMONIALS.slice(0, 3).map((t) => (
-               <div key={t.id} className="bg-white p-8 shadow-sm hover:shadow-lg transition-shadow border-t-4 border-primary">
-                 <div className="flex items-center gap-4 mb-6">
-                   <img src={t.avatarUrl} alt={t.name} className="w-12 h-12 rounded-full object-cover" />
+          <div className="flex justify-between items-end mb-16">
+            <h2 className="text-4xl md:text-5xl font-oswald font-bold text-primary uppercase text-center md:text-left">
+              Experience
+            </h2>
+            <Link to={Routes.EXPERIENCE} className="hidden md:block">
+                <Button variant="outline">View Full Resume</Button>
+            </Link>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+             {EXPERIENCES.slice(0, 2).map((exp) => (
+               <div key={exp.id} className="bg-white p-8 shadow-sm hover:shadow-lg transition-shadow border-l-4 border-primary">
+                 <div className="flex justify-between items-start mb-4">
                    <div>
-                     <h4 className="font-oswald uppercase text-lg leading-none">{t.name}</h4>
-                     <p className="font-mono text-[10px] text-muted uppercase">{t.role}, {t.company}</p>
+                     <h4 className="font-oswald uppercase text-xl leading-none mb-1">{exp.role}</h4>
+                     <p className="font-mono text-xs text-primary uppercase font-bold">{exp.company}</p>
                    </div>
+                   <span className="font-mono text-[10px] text-muted bg-offwhite px-2 py-1 rounded">{exp.period}</span>
                  </div>
-                 <p className="font-mono text-xs leading-loose text-muted">"{t.content}"</p>
+                 <ul className="list-disc list-inside space-y-2">
+                    {exp.description.slice(0, 2).map((desc, i) => (
+                        <li key={i} className="font-mono text-xs text-muted leading-relaxed pl-2 -indent-2">{desc}</li>
+                    ))}
+                 </ul>
                </div>
              ))}
+          </div>
+          <div className="mt-8 text-center md:hidden">
+              <Link to={Routes.EXPERIENCE}>
+                <Button variant="outline">View Full Resume</Button>
+              </Link>
           </div>
         </div>
       </section>
@@ -189,7 +259,7 @@ export const Home: React.FC = () => {
               Tell me about it
             </h3>
             <Link to={Routes.CONTACT}>
-               <Button size="lg" className="bg-white text-primary hover:bg-beige hover:scale-105 transform transition-all">
+               <Button size="lg" className="bg-white !text-primary hover:bg-beige hover:scale-105 transform transition-all">
                  Send Me A Request →
                </Button>
             </Link>
