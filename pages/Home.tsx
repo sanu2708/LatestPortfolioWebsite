@@ -9,6 +9,9 @@ import { WaveOverlay } from '../components/WaveOverlay';
 export const Home: React.FC = () => {
   const featuredProjects = PROJECTS.slice(0, 3);
 
+  // Fallback URL if the local image fails to load
+  const fallbackImage = 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop';
+
   return (
     <main className="overflow-x-hidden">
       {/* HERO SECTION */}
@@ -34,32 +37,35 @@ export const Home: React.FC = () => {
           
              {/* Subheading */}
              <h2 className="font-oswald text-xl md:text-2xl font-bold uppercase tracking-widest text-dark mb-8 lg:mb-12 text-center relative z-30">
-              Hi There, I'm Albert
+              Hi There, I'm Sanu Singh
             </h2>
 
             {/* Grid Composition for Perfect Overlap & Responsiveness */}
             <div className="grid grid-cols-1 grid-rows-1 place-items-center w-full max-w-7xl mx-auto">
                 
-                {/* Layer 1: Typography (Moved to Z-30 to be visible on top of image) */}
+                {/* Layer 1: Typography (Z-30 = ON TOP of image) */}
                 <div className="col-start-1 row-start-1 flex flex-col items-center justify-center w-full z-30 select-none pointer-events-none">
-                    {/* Increased Gap to frame the image instead of blocking it */}
-                    {/* Moved UP using translate-y */}
+                    {/* Gap frames the image */}
                     <div className="flex justify-between w-full gap-16 md:gap-48 lg:gap-64 transition-all duration-500 transform -translate-y-6 md:-translate-y-16">
-                         <span className="text-[16vw] md:text-[13rem] lg:text-[15rem] font-oswald font-bold text-primary uppercase leading-[0.8] tracking-tighter opacity-90 drop-shadow-xl md:drop-shadow-none">FRONT</span>
-                         <span className="text-[16vw] md:text-[13rem] lg:text-[15rem] font-oswald font-bold text-primary uppercase leading-[0.8] tracking-tighter opacity-90 drop-shadow-xl md:drop-shadow-none">END</span>
+                         <span className="text-[16vw] md:text-[13rem] lg:text-[15rem] font-oswald font-bold text-primary uppercase leading-[0.8] tracking-tighter opacity-90 drop-shadow-xl md:drop-shadow-none mix-blend-darken">FRONT</span>
+                         <span className="text-[16vw] md:text-[13rem] lg:text-[15rem] font-oswald font-bold text-primary uppercase leading-[0.8] tracking-tighter opacity-90 drop-shadow-xl md:drop-shadow-none mix-blend-darken">END</span>
                     </div>
-                    {/* Moved DOWN using translate-y and removed negative margins */}
-                    <span className="text-[16vw] md:text-[13rem] lg:text-[15rem] font-oswald font-bold text-primary uppercase leading-[0.8] tracking-tighter opacity-90 text-center w-full drop-shadow-xl md:drop-shadow-none transform translate-y-6 md:translate-y-16">
+                    <span className="text-[16vw] md:text-[13rem] lg:text-[15rem] font-oswald font-bold text-primary uppercase leading-[0.8] tracking-tighter opacity-90 text-center w-full drop-shadow-xl md:drop-shadow-none transform translate-y-6 md:translate-y-16 mix-blend-darken">
                         DEVELOPER
                     </span>
                 </div>
 
-                {/* Layer 2: Portrait Image (Rounded corners and Z-20) */}
+                {/* Layer 2: Portrait Image (Z-20 = BEHIND text) */}
                 <div className="col-start-1 row-start-1 z-20 mt-4 md:mt-0">
-                    <div className="relative w-[60vw] md:w-80 lg:w-96 aspect-[3/4] shadow-2xl rounded-[3rem] bg-gray-200 overflow-hidden group transition-all duration-500">
+                    <div className="relative w-[60vw] md:w-80 lg:w-96 aspect-[3/4] shadow-2xl rounded-[3rem] bg-offwhite overflow-hidden group transition-all duration-500 border-4 border-white/50">
                         <img 
                             src={HERO_IMAGE} 
-                            alt="Albert Portrait" 
+                            alt="Sanu Singh Portrait"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.src = fallbackImage;
+                              target.alt = "Fallback Portrait";
+                            }}
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
                         />
                          {/* Gloss overlay */}

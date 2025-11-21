@@ -1,3 +1,4 @@
+
 import { Project, Testimonial } from './types';
 
 export const PROJECTS: Project[] = [
@@ -49,7 +50,7 @@ export const TESTIMONIALS: Testimonial[] = [
     name: 'Sarah Jenkins',
     role: 'Product Director',
     company: 'TechFlow',
-    content: 'Albert transformed our chaotic dashboard into a work of art. His attention to typographic detail is unmatched in the development world.',
+    content: 'Sanu transformed our chaotic dashboard into a work of art. His attention to typographic detail is unmatched in the development world.',
     avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop'
   },
   {
@@ -57,7 +58,7 @@ export const TESTIMONIALS: Testimonial[] = [
     name: 'Marcus Chen',
     role: 'Founder',
     company: 'Velvet',
-    content: 'Working with Albert was seamless. He bridges the gap between design and code perfectly. Our conversion rates doubled after the launch.',
+    content: 'Working with Sanu was seamless. He bridges the gap between design and code perfectly. Our conversion rates doubled after the launch.',
     avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop'
   },
   {
@@ -65,7 +66,7 @@ export const TESTIMONIALS: Testimonial[] = [
     name: 'Elena Rostova',
     role: 'Art Director',
     company: 'Echo Mag',
-    content: 'Technically brilliant and aesthetically sensitive. It is rare to find a developer who cares about micro-interactions as much as Albert does.',
+    content: 'Technically brilliant and aesthetically sensitive. It is rare to find a developer who cares about micro-interactions as much as Sanu does.',
     avatarUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop'
   }
 ];
@@ -73,11 +74,12 @@ export const TESTIMONIALS: Testimonial[] = [
 // ==========================================
 // YOUR PERSONAL IMAGE SETUP
 // ==========================================
-// To use your own photo:
-// 1. Rename your image file to 'portrait.jpg' (or similar).
-// 2. Place it in the 'public' folder of this project.
-// 3. Uncomment the line below:
-// export const HERO_IMAGE = '/portrait.jpg';
+// 1. Rename your photo to 'portrait.jpg' (lowercase).
+// 2. Move it to the PUBLIC folder (create a folder named 'public' in the root if missing).
+// 3. Ensure the path below is '/portrait.jpg'.
+//
+// NOTE: If using a local file keeps failing, upload your photo to Imgur/LinkedIn
+// and paste the URL here instead.
 
 // Currently using Unsplash demo image:
-export const HERO_IMAGE = './portrait.jpg';
+export const HERO_IMAGE = 'https://raw.githubusercontent.com/sanu2708/LatestPortfolioWebsite/refs/heads/main/portrait.png';

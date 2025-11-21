@@ -40,7 +40,7 @@ export const Header: React.FC = () => {
         {/* Logo */}
         <Link to={Routes.HOME} className="z-50">
           <span className="font-oswald text-2xl font-bold tracking-tighter text-primary hover:scale-105 transition-transform block">
-            Albert.
+            Sanu Singh.
           </span>
         </Link>
 

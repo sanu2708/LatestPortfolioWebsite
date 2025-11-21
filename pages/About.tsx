@@ -17,7 +17,7 @@ export const About: React.FC = () => {
             </h1>
             <div className="flex flex-col md:flex-row gap-12">
                <p className="font-mono text-sm md:text-base leading-loose text-muted md:w-1/2">
-                 I am Albert, a multidisciplinary front-end developer and designer. I believe that the web is a canvas where logic meets creativity. With over 5 years of experience, I help brands tell their stories through immersive digital experiences.
+                 I am Sanu Singh, a multidisciplinary front-end developer and designer. I believe that the web is a canvas where logic meets creativity. With over 5 years of experience, I help brands tell their stories through immersive digital experiences.
                </p>
                <div className="md:w-1/2">
                   <h3 className="font-oswald text-xl uppercase mb-6 border-b border-gray-200 pb-2">Technical Arsenal</h3>

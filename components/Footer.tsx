@@ -15,10 +15,10 @@ export const Footer: React.FC = () => {
           <div className="flex flex-col justify-center">
             <h3 className="font-mono text-xs text-muted uppercase tracking-widest mb-4">Get in touch</h3>
             <a 
-              href="mailto:info@albert.com" 
+              href="mailto:info@sanusingh.com" 
               className="font-oswald text-4xl md:text-5xl lg:text-6xl text-primary font-bold uppercase leading-none hover:text-dark transition-colors break-all"
             >
-              info@<br/>albert.com
+              info@<br/>sanusingh.com
             </a>
           </div>
 
@@ -49,8 +49,8 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="border-t border-dark/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="font-mono text-[10px] uppercase text-muted">© {new Date().getFullYear()} Albert Portfolio. All rights reserved.</p>
-          <p className="font-mono text-[10px] uppercase text-muted">Design & Built by Albert</p>
+          <p className="font-mono text-[10px] uppercase text-muted">© {new Date().getFullYear()} Sanu Singh Portfolio. All rights reserved.</p>
+          <p className="font-mono text-[10px] uppercase text-muted">Design & Built by Sanu Singh</p>
         </div>
       </div>
     </footer>

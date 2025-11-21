@@ -17,7 +17,7 @@ export const Contact: React.FC = () => {
               <div className="space-y-8">
                  <div>
                    <h4 className="font-oswald uppercase text-xl mb-2">Email</h4>
-                   <a href="mailto:info@albert.com" className="font-mono text-dark hover:text-primary text-lg">info@albert.com</a>
+                   <a href="mailto:info@sanusingh.com" className="font-mono text-dark hover:text-primary text-lg">info@sanusingh.com</a>
                  </div>
                  <div>
                    <h4 className="font-oswald uppercase text-xl mb-2">Socials</h4>
