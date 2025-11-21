@@ -80,4 +80,4 @@ export const TESTIMONIALS: Testimonial[] = [
 // export const HERO_IMAGE = '/portrait.jpg';
 
 // Currently using Unsplash demo image:
-export const HERO_IMAGE = './portrait.jpg';
+export const HERO_IMAGE = '/portrait.jpg';
