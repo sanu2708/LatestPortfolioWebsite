@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PROJECTS, HERO_IMAGE, EXPERIENCES } from '../constants';
 import { Routes } from '../types';
@@ -9,14 +8,25 @@ import { WaveOverlay } from '../components/WaveOverlay';
 
 export const Home: React.FC = () => {
   const featuredProjects = PROJECTS.slice(0, 3);
+  const [scrollY, setScrollY] = useState(0);
 
   // Fallback URL if the local image fails to load
   const fallbackImage = 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop';
 
+  // Parallax scroll listener
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <main className="overflow-x-hidden">
       {/* HERO SECTION */}
-      <section className="relative min-h-screen flex flex-col justify-center pt-32 pb-20 overflow-hidden bg-offwhite">
+      <section className="relative min-h-screen flex flex-col justify-center pt-40 pb-12 overflow-hidden bg-offwhite">
         
         {/* Background Wavy Decoration */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -44,40 +54,49 @@ export const Home: React.FC = () => {
             {/* COMPOSITION CONTAINER */}
             <div className="relative w-full max-w-7xl mx-auto flex flex-col items-center">
                 
-                {/* LAYER 1: BACK TEXT (FULL STACK) */}
-                <div className="w-full flex justify-between items-start absolute top-20 md:top-12 left-0 right-0 z-0 px-2 md:px-8 select-none pointer-events-none">
-  <span className="text-[15vw] md:text-[13rem] lg:text-[16rem] font-oswald font-bold text-primary leading-none tracking-tighter opacity-90">
-    FULL
-  </span>
-  <span className="text-[15vw] md:text-[13rem] lg:text-[16rem] font-oswald font-bold text-primary leading-none tracking-tighter opacity-90">
-    STACK
-  </span>
-</div>
+                {/* LAYER 1: BACK TEXT (FULL STACK) - Moves down slowly */}
+                <div 
+                  className="w-full flex justify-between items-start absolute top-24 md:top-16 left-0 right-0 z-0 px-2 md:px-8 select-none pointer-events-none transition-transform will-change-transform ease-out duration-75"
+                  style={{ transform: `translateY(${scrollY * 0.4}px)` }}
+                >
+                  <span className="text-[12vw] md:text-[10rem] lg:text-[13rem] font-oswald font-bold text-primary leading-none tracking-tighter opacity-90">
+                    FULL
+                  </span>
+                  <span className="text-[12vw] md:text-[10rem] lg:text-[13rem] font-oswald font-bold text-primary leading-none tracking-tighter opacity-90">
+                    STACK
+                  </span>
+                </div>
 
-                {/* LAYER 2: IMAGE (CENTER) */}
-                <div className="relative z-10 mt-[10vw] md:mt-[4rem] lg:mt-[6rem]">
-  <div className="relative w-[85vw] md:w-[34rem] lg:w-[38rem] aspect-[3/4] -translate-y-12 md:-translate-y-20 lg:-translate-y-24">
-    <img 
-      src={HERO_IMAGE} 
-      alt="Sanu Singh Portrait"
-      onError={(e) => {
-        const target = e.target as HTMLImageElement;
-        target.src = fallbackImage;
-        target.alt = "Fallback Portrait";
-      }}
-      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-    />
-    {/* Gloss overlay */}
-    <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
-  </div>
-</div>
+                {/* LAYER 2: IMAGE (CENTER) - Moves down very slowly (anchored) */}
+                <div 
+                  className="relative z-10 mt-[10vw] md:mt-[4rem] lg:mt-[6rem] will-change-transform ease-out duration-75"
+                  style={{ transform: `translateY(${scrollY * 0.15}px)` }}
+                >
+                  <div className="relative w-[85vw] md:w-[34rem] lg:w-[38rem] aspect-[3/4] -translate-y-12 md:-translate-y-20 lg:-translate-y-24">
+                    <img 
+                      src={HERO_IMAGE} 
+                      alt="Sanu Singh Portrait"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = fallbackImage;
+                        target.alt = "Fallback Portrait";
+                      }}
+                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    />
+                    {/* Gloss overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
+                  </div>
+                </div>
 
-                {/* LAYER 3: FRONT TEXT (DEVELOPER) */}
-                <div className="relative z-20 -mt-[10vw] md:-mt-[5rem] lg:-mt-[6rem] flex items-center justify-center w-full">
-                    <h1 className="text-[15vw] md:text-[13rem] lg:text-[16rem] font-oswald font-bold text-primary leading-none tracking-tighter drop-shadow-xl mix-blend-normal">
+                {/* LAYER 3: FRONT TEXT (DEVELOPER) - Moves UP (Creates depth vs background) */}
+                <div 
+                  className="relative z-20 -mt-[20vw] md:-mt-[10rem] lg:-mt-[13rem] flex items-center justify-center w-full will-change-transform ease-out duration-75"
+                  style={{ transform: `translateY(-${scrollY * 0.2}px)` }}
+                >
+                    <h1 className="text-[12vw] md:text-[10rem] lg:text-[13rem] font-oswald font-bold text-primary leading-none tracking-tighter drop-shadow-xl mix-blend-normal">
                         DEVELOPER
                     </h1>
-                    {/* Decorative Icon */}
+                    {/* Decorative Icon - Moves with text */}
                     <div className="hidden md:block absolute -right-12 top-1/2 -translate-y-1/2 text-primary transform rotate-12 bg-white/80 p-2 rounded-full shadow-lg">
                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                          <polyline points="16 18 22 12 16 6"></polyline>
@@ -86,8 +105,11 @@ export const Home: React.FC = () => {
                     </div>
                 </div>
 
-                {/* SIDE INTRO TEXT */}
-                <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/3 max-w-[260px] text-right z-30">
+                {/* SIDE INTRO TEXT - Parallax effect slightly different to float */}
+                <div 
+                  className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/3 max-w-[260px] text-right z-30 will-change-transform"
+                  style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+                >
                      <p className="font-mono text-xs leading-relaxed text-dark bg-white/80 backdrop-blur-md p-6 rounded shadow-sm border border-white/50">
                        I'm a software developer. I have practised data structures and algorithms in JAVA and solved decent problem-solving skills. After that, I started learning WEB development.
                      </p>
@@ -106,7 +128,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* WORKS SECTION */}
-      <section className="py-24 bg-offwhite relative">
+      <section className="py-24 bg-offwhite relative z-20">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <h2 className="text-6xl md:text-8xl font-oswald font-bold text-primary uppercase leading-none">
@@ -131,7 +153,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* ABOUT GLIMPSE SECTION */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white relative z-20">
         <div className="container mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             {/* Visual */}
@@ -181,7 +203,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* TYPOGRAPHIC DIVIDER */}
-      <section className="py-32 bg-beige overflow-hidden relative">
+      <section className="py-32 bg-beige overflow-hidden relative z-20">
         <WaveOverlay className="top-0 -translate-y-20 text-offwhite" />
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -207,7 +229,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* EXPERIENCE PREVIEW */}
-      <section className="py-24 bg-offwhite">
+      <section className="py-24 bg-offwhite z-20 relative">
         <div className="container mx-auto px-6">
           <div className="flex justify-between items-end mb-16">
             <h2 className="text-4xl md:text-5xl font-oswald font-bold text-primary uppercase text-center md:text-left">
@@ -245,7 +267,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* CTA SECTION */}
-      <section className="py-32 bg-primary text-white relative overflow-hidden">
+      <section className="py-32 bg-primary text-white relative overflow-hidden z-20">
          <div className="absolute inset-0 opacity-10 pointer-events-none">
             <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
                <path d="M0 100 C 20 0 50 0 100 100 Z" fill="white" />

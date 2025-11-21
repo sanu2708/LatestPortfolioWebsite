@@ -25,11 +25,15 @@ export const ProjectDetail: React.FC = () => {
   return (
     <div className="bg-offwhite min-h-screen pt-24">
       {/* Project Hero */}
-      <div className="h-[60vh] w-full relative overflow-hidden">
-        <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-dark/30"></div>
+      <div className="h-[60vh] w-full relative overflow-hidden bg-gray-900">
+        <img 
+          src={project.imageUrl} 
+          alt={project.title} 
+          className="w-full h-full object-cover opacity-0 animate-scale-in" 
+        />
+        <div className="absolute inset-0 bg-dark/30 animate-fade-in-up"></div>
         <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 bg-gradient-to-t from-dark/90 to-transparent">
-           <div className="container mx-auto">
+           <div className="container mx-auto opacity-0 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
              <Link to={Routes.WORKS} className="text-white/70 font-mono text-xs uppercase hover:text-white mb-4 block">← Back to Works</Link>
              <h1 className="text-5xl md:text-7xl font-oswald font-bold text-white uppercase">{project.title}</h1>
            </div>
@@ -39,7 +43,7 @@ export const ProjectDetail: React.FC = () => {
       <div className="container mx-auto px-6 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Sidebar Meta */}
-          <div className="lg:col-span-4 space-y-8">
+          <div className="lg:col-span-4 space-y-8 opacity-0 animate-fade-in-up" style={{ animationDelay: '400ms' }}>
              <div className="border-t-2 border-primary pt-4">
                <h3 className="font-oswald text-xl uppercase mb-2">Year</h3>
                <p className="font-mono text-muted">{project.year}</p>
@@ -63,8 +67,8 @@ export const ProjectDetail: React.FC = () => {
 
           {/* Main Content */}
           <div className="lg:col-span-8">
-             <h2 className="font-oswald text-3xl uppercase text-primary mb-6">Project Overview</h2>
-             <p className="font-mono text-muted leading-loose mb-12 text-lg">
+             <h2 className="font-oswald text-3xl uppercase text-primary mb-6 opacity-0 animate-fade-in-up" style={{ animationDelay: '500ms' }}>Project Overview</h2>
+             <p className="font-mono text-muted leading-loose mb-12 text-lg opacity-0 animate-fade-in-up" style={{ animationDelay: '600ms' }}>
                {project.description}
              </p>
 
@@ -72,7 +76,7 @@ export const ProjectDetail: React.FC = () => {
              {project.gallery && project.gallery.length > 0 && (
                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {project.gallery.map((imgUrl, index) => (
-                     <div key={index} className="bg-gray-200 aspect-square rounded-sm overflow-hidden">
+                     <div key={index} className="bg-gray-200 aspect-square rounded-sm overflow-hidden opacity-0 animate-scale-in" style={{ animationDelay: `${700 + (index * 150)}ms` }}>
                         <img 
                           src={imgUrl} 
                           className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
